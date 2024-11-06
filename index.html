@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+ <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unit Converter</title>
+    <style>
+ body {
+    font-family: Cursive;
+    background-color: #b2dee0;
+    margin: 0;
+    padding: 20px;
+}
+
+.container {
+    max-width: 500px;
+    margin: auto;
+    padding: 20px;
+    background:Violet;
+    border-radius: 12px;
+    box-shadow: 0 4px 100px rgba(0, 0, 0, 0.15);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.container:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+}
+h3{
+    font-family: Cursive;
+    text-align: center;
+    color: #333;
+    font-size: 20px;
+    margin-bottom: 20px;
+}
+h1 {
+    font-family: Cursive;
+    text-align: center;
+    color: #333;
+    font-size: 34px;
+    margin-bottom: 20px;
+}
+
+.input-group {
+    margin-bottom: 20px;
+}
+
+label {
+    font-family: Cursive;
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+    color: #555;
+}
+
+input[type="number"],
+select {
+    font-family: Cursive;
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    font-size: 16px;
+    transition: border-color 0.3s;
+}
+
+input[type="number"]:focus,
+select:focus {
+    font-family: Cursive;
+    border-color: #5cb85c;
+    outline: none;
+}
+
+button {
+    font-family: Cursive; 
+    width: 100%;
+    padding: 12px;
+    border: none;
+    border-radius: 6px;
+    background-color: #5cb85c;
+    color: white;
+    font-size: 18px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #e373e2; 
+}
+
+.result {
+    margin-top: 20px;
+    padding: 15px;
+    background: #e7f3fe;
+    border-left: 6px solid #2196F3;
+    border-radius: 6px;
+    color: #333;
+    font-weight: bold;
+    text-align: center;
+}
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Unit Converter</h1>
+        <h3>My name is Sabbir.I read in class 9.I am a member of ALPCG club.</h3>
+        <div class="converter">
+            <input type="number" id="inputValue" placeholder="Enter value" />
+            <select id="inputUnit">
+                <option value="meters">Meters</option>
+                <option value="kilometers">Kilometers</option>
+                <option value="miles">Miles</option>
+                <option value="centimeters">Centimeters</option>
+                <option value="millimeters">Millimeters</option>
+                <option value="inches">Inches</option>
+                <option value="feet">Feet</option>
+            </select>
+            <button id="convertBtn">Convert</button>
+            <h2 id="result"></h2>
+            <select id="outputUnit">
+                <option value="meters">Meters</option>
+                <option value="kilometers">Kilometers</option>
+                <option value="miles">Miles</option>
+                <option value="centimeters">Centimeters</option>
+                <option value="millimeters">Millimeters</option>
+                <option value="inches">Inches</option>
+                <option value="feet">Feet</option>
+            </select>
+        </div>
+    </div>
+    <script>
+        document.getElementById('convertBtn').addEventListener('click', function() {
+    const inputValue = parseFloat(document.getElementById('inputValue').value);
+    const inputUnit = document.getElementById('inputUnit').value;
+    const outputUnit = document.getElementById('outputUnit').value;
+
+    if (isNaN(inputValue)) {
+        document.getElementById('result').innerText = "Please enter a valid number.";
+        return;
+    }
+
+    let resultInMeters;
+
+    // Convert input value to meters
+    switch (inputUnit) {
+        case 'meters':
+            resultInMeters = inputValue;
+            break;
+        case 'kilometers':
+            resultInMeters = inputValue * 1000;
+            break;
+        case 'miles':
+            resultInMeters = inputValue * 1609.34;
+            break;
+        case 'centimeters':
+            resultInMeters = inputValue / 100;
+            break;
+        case 'millimeters':
+            resultInMeters = inputValue / 1000;
+            break;
+        case 'inches':
+            resultInMeters = inputValue * 0.0254;
+            break;
+        case 'feet':
+            resultInMeters = inputValue * 0.3048;
+            break;
+    }
+
+    // Convert meters to output unit
+    let finalResult;
+    switch (outputUnit) {
+        case 'meters':
+            finalResult = resultInMeters;
+            break;
+        case 'kilometers':
+            finalResult = resultInMeters / 1000;
+            break;
+        case 'miles':
+            finalResult = resultInMeters / 1609.34;
+            break;
+        case 'centimeters':
+            finalResult = resultInMeters * 100;
+            break;
+        case 'millimeters':
+            finalResult = resultInMeters * 1000;
+            break;
+        case 'inches':
+            finalResult = resultInMeters / 0.0254;
+            break;
+        case 'feet':
+            finalResult = resultInMeters / 0.3048;
+            break;
+    }
+
+    document.getElementById('result').innerText = `Result: ${finalResult.toFixed(2)} ${outputUnit}`;
+});
+
+    </script>
+</body>
+</html>
